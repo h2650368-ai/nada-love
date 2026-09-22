@@ -1,143 +1,384 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>رسالة ليكي ❤️</title>
-<style>
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;font-family:Tahoma,Arial,sans-serif}
-body{
-  overflow:hidden;
-  background:radial-gradient(circle at 50% 35%,#101d3d 0,#071127 42%,#030712 100%);
-  color:#fff;
-}
-#hearts{position:fixed;inset:0;overflow:hidden;pointer-events:none}
-.heart{
-  position:absolute;top:-40px;color:#ff4264;font-size:var(--s);
-  filter:drop-shadow(0 0 8px #ff214b);
-  animation:fall var(--d) linear var(--delay) infinite;
-  opacity:.8
-}
-@keyframes fall{
-  0%{transform:translate3d(0,-50px,0) rotate(0deg);opacity:0}
-  10%{opacity:.85}
-  100%{transform:translate3d(var(--x),110vh,0) rotate(360deg);opacity:0}
-}
-.screen{
-  position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
-  padding:24px;transition:opacity .5s,transform .5s
-}
-.card{text-align:center;width:min(430px,94vw);position:relative;z-index:2}
-h1{font-size:clamp(28px,8vw,46px);margin:0 0 8px;text-shadow:0 0 18px #ff315a}
-.sub{color:#c9d1e8;margin:0 0 30px;font-size:15px}
-.envelope{
-  width:min(330px,82vw);height:215px;margin:0 auto 28px;position:relative;
-  cursor:pointer;transform:translateY(0);transition:.35s;
-  filter:drop-shadow(0 18px 30px rgba(0,0,0,.55))
-}
-.envelope:hover{transform:translateY(-7px) scale(1.02)}
-.env-body{
-  position:absolute;inset:0;border-radius:12px;
-  background:linear-gradient(145deg,#151c31,#080c18);
-  border:1px solid rgba(255,70,100,.45);box-shadow:inset 0 0 35px rgba(255,40,75,.08)
-}
-.env-body:before,.env-body:after{
-  content:"";position:absolute;bottom:0;width:72%;height:2px;background:#a91e3d;opacity:.8
-}
-.env-body:before{left:-2px;transform:rotate(31deg);transform-origin:left}
-.env-body:after{right:-2px;transform:rotate(-31deg);transform-origin:right}
-.flap{
-  position:absolute;top:1px;left:0;width:100%;height:62%;
-  background:linear-gradient(145deg,#202941,#0b1020);
-  clip-path:polygon(0 0,100% 0,50% 100%);
-  border-radius:12px 12px 0 0;border:1px solid rgba(255,70,100,.3)
-}
-.seal{
-  position:absolute;left:50%;top:51%;transform:translate(-50%,-50%);
-  width:62px;height:62px;border-radius:50%;display:grid;place-items:center;
-  background:radial-gradient(circle,#ff4b6b,#9f1235 65%,#4a0a1a);
-  box-shadow:0 0 25px rgba(255,40,75,.7);font-size:30px
-}
-.hint{color:#aeb9d5;font-size:14px}
-.btn{
-  border:0;border-radius:999px;padding:13px 28px;background:linear-gradient(90deg,#b92b52,#ed4166);
-  color:white;font-size:16px;font-weight:bold;box-shadow:0 8px 25px rgba(220,40,85,.25);cursor:pointer
-}
-.hidden{opacity:0;transform:scale(.96);pointer-events:none}
-.letter-wrap{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:20px}
-.letter{
-  width:min(440px,92vw);max-height:82vh;overflow:auto;padding:34px 25px 28px;
-  background:linear-gradient(145deg,#fff9ed,#f3e4c7);color:#29231f;border-radius:4px;
-  box-shadow:0 25px 70px rgba(0,0,0,.6),0 0 25px rgba(255,255,255,.08);
-  transform:rotate(-1deg);position:relative
-}
-.letter:before{
-  content:"";position:absolute;inset:12px;border:1px solid rgba(120,70,40,.25);pointer-events:none
-}
-.letter h2{margin:0 0 18px;color:#9e1835;font-size:25px}
-.message{font-size:19px;line-height:2.05;white-space:pre-line;position:relative}
-.signature{margin-top:20px;color:#9e1835;font-weight:bold;font-size:17px}
-.back{margin-top:22px;background:#171e35}
-@media(max-height:650px){.envelope{height:175px}.letter{max-height:88vh}.message{font-size:17px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>رسالة ليكي ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: #ffffff;
+      font-family: Tahoma, Arial, sans-serif;
+      overflow-x: hidden;
+      color: #222;
+    }
+
+    /* القلوب النازلة */
+    .hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      top: -40px;
+      color: #e60023;
+      font-size: 18px;
+      animation: fall linear infinite;
+      opacity: 0.85;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-50px) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.9;
+      }
+
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    .page {
+      position: relative;
+      z-index: 2;
+      min-height: 100vh;
+      padding: 45px 18px 70px;
+      text-align: center;
+    }
+
+    .title {
+      margin-top: 5px;
+      color: #d4001f;
+      font-size: 32px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      margin-top: 8px;
+      margin-bottom: 30px;
+      font-size: 18px;
+      color: #555;
+    }
+
+    /* الجواب */
+    .envelope-area {
+      display: flex;
+      justify-content: center;
+      margin-top: 15px;
+      perspective: 1000px;
+    }
+
+    .envelope {
+      position: relative;
+      width: min(330px, 88vw);
+      height: 220px;
+      background: #fff;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.13);
+      cursor: pointer;
+      transition: 0.35s ease;
+    }
+
+    .envelope:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+    }
+
+    /* مثلث الجواب */
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 115px;
+      background: #fafafa;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      border-bottom: 1px solid #ddd;
+      z-index: 3;
+    }
+
+    .letter-n {
+      position: absolute;
+      top: 58px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 5;
+      font-family: Georgia, serif;
+      font-size: 55px;
+      font-style: italic;
+      font-weight: bold;
+      color: #c90020;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.12);
+    }
+
+    .seal {
+      position: absolute;
+      left: 50%;
+      top: 96px;
+      transform: translateX(-50%);
+      width: 48px;
+      height: 48px;
+      background: #d40022;
+      border-radius: 50%;
+      z-index: 6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 24px;
+      box-shadow: 0 4px 10px rgba(180,0,25,0.3);
+    }
+
+    .envelope-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 54px;
+      height: 2px;
+      background: #d40022;
+      transform: rotate(0deg);
+    }
+
+    .instruction {
+      margin-top: 25px;
+      font-size: 19px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 13px 27px;
+      border: 2px solid #d40022;
+      border-radius: 30px;
+      background: white;
+      color: #d40022;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.25s;
+    }
+
+    .button:hover {
+      background: #d40022;
+      color: white;
+    }
+
+    /* الرسالة */
+    .letter {
+      display: none;
+      width: min(650px, 94vw);
+      margin: 38px auto 0;
+      padding: 35px 25px;
+      background: #fffdf8;
+      border: 1px solid #e6ded1;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.14);
+      border-radius: 4px;
+      animation: showLetter 0.7s ease;
+      position: relative;
+    }
+
+    .letter::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1px solid #eee2d5;
+      pointer-events: none;
+    }
+
+    @keyframes showLetter {
+      from {
+        opacity: 0;
+        transform: translateY(25px) scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .letter-title {
+      color: #c90020;
+      font-size: 25px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .message {
+      position: relative;
+      z-index: 2;
+      font-size: 19px;
+      line-height: 2.1;
+      color: #292929;
+      text-align: right;
+    }
+
+    .ending {
+      margin-top: 25px;
+      text-align: center;
+      color: #d40022;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .small-heart {
+      color: #d40022;
+    }
+
+    @media (max-width: 500px) {
+      .page {
+        padding-top: 30px;
+      }
+
+      .title {
+        font-size: 28px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+      }
+
+      .envelope {
+        height: 200px;
+      }
+
+      .letter {
+        padding: 28px 19px;
+      }
+
+      .message {
+        font-size: 17px;
+        line-height: 2;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<div id="hearts"></div>
 
-<section id="home" class="screen">
-  <div class="card">
-    <h1>رسالة ليكي ❤️</h1>
-    <p class="sub">👑😍في جواب صغير مستنيكي...</p>
-    <div class="envelope" onclick="openLetter()" aria-label="افتحي الجواب">
-      <div class="env-body"></div>
-      <div class="flap"></div>
-      <div class="seal">♥</div>
+  <!-- القلوب -->
+  <div class="hearts" id="hearts"></div>
+
+  <main class="page">
+
+    <div class="title">
+      رسالة ليكي ❤️
     </div>
-    <div class="hint">اضغطي على الجواب عشان تفتحيه ✨</div>
-  </div>
-</section>
 
-<section id="letterScreen" class="screen hidden">
-  <div class="letter-wrap">
-    <article class="letter">
-      <h2>بصي بقي يا نور عيني ❤️</h2>
-      <div class="message">انا بحبك وبحبك اوي اوي فوق ما تتخيلي
-وعمري ماهستغني عنك مهما حصل
-جنبك في كل الظروف الصعبه والحلوه،
+    <div class="subtitle">
+      في الجواب مستنيكي
+    </div>
 
-مشتريكي ويارب ما تخيبي ظني فيكي،
-وان شاء الله نكون مع بعض في الحلال
-يا روحي ،ربنا مايحرمني منك
-        ابدا يارب وتفضلي في حياتي ع طول ، 
-        بعشقكككك فشخخخخخ🤍😍😍</div>
-      <div class="signature">من حسين ❤️</div>
-      <button class="btn back" onclick="closeLetter()">اضغطي للعودة</button>
-    </article>
-  </div>
-</section>
+    <!-- الجواب -->
+    <div class="envelope-area">
+      <div class="envelope" onclick="openLetter()">
 
-<script>
-const heartBox=document.getElementById('hearts');
-for(let i=0;i<34;i++){
-  const h=document.createElement('span');
-  h.className='heart';
-  h.textContent=Math.random()>.18?'♥':'♡';
-  h.style.left=Math.random()*100+'%';
-  h.style.setProperty('--s',(10+Math.random()*16)+'px');
-  h.style.setProperty('--x',(-70+Math.random()*140)+'px');
-  h.style.setProperty('--d',(5+Math.random()*7)+'s');
-  h.style.setProperty('--delay',(-Math.random()*10)+'s');
-  heartBox.appendChild(h);
-}
-function openLetter(){
-  document.getElementById('home').classList.add('hidden');
-  setTimeout(()=>document.getElementById('letterScreen').classList.remove('hidden'),220);
-}
-function closeLetter(){
-  document.getElementById('letterScreen').classList.add('hidden');
-  setTimeout(()=>document.getElementById('home').classList.remove('hidden'),220);
-}
-</script>
+        <div class="flap"></div>
+
+        <div class="letter-n">N</div>
+
+        <div class="seal">♥</div>
+
+        <div class="envelope-line"></div>
+
+      </div>
+    </div>
+
+    <div class="instruction">
+      دوسي ع الجواب عشان تشوفي الرسالة
+    </div>
+
+    <button class="button" onclick="openLetter()">
+      افتحي الجواب ❤️
+    </button>
+
+    <!-- الرسالة -->
+    <section class="letter" id="letter">
+
+      <div class="letter-title">
+        ليكي إنتي بس ❤️
+      </div>
+
+      <div class="message">
+        بحبك اوي وبحبك فوق ما تتخيلي وعمري ما هستغنى عنك مهما حصل،
+        انتي أغلى حاجة عندي، عمري ما هبعد عنك مهما كان انتي ليا انا وبس،
+        بحب كل حاجة فيكي كلامك وضحكتك ابتسامتك،
+        ولا عينيكي الجوز دول اللي بيدوخوني أول ما بشوفهم،
+        مشتريك ويارب ما تخيبي ظني فيكي،
+        وإن شاء الله نكون مع بعض في الحلال ياروحي،
+        ربنا ما يحرمني منك وتفضلي جنبي وفي حياتي ع طول.
+      </div>
+
+      <div class="ending">
+        بعشقكك فشخخخخ 😍🤍
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    // فتح الرسالة
+    function openLetter() {
+      const letter = document.getElementById("letter");
+
+      letter.style.display = "block";
+
+      setTimeout(() => {
+        letter.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      }, 100);
+    }
+
+    // إنشاء القلوب المتساقطة
+    const heartsContainer = document.getElementById("hearts");
+
+    function createHeart() {
+      const heart = document.createElement("div");
+
+      heart.className = "heart";
+      heart.innerHTML = "♥";
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (10 + Math.random() * 14) + "px";
+      heart.style.animationDuration = (5 + Math.random() * 7) + "s";
+      heart.style.animationDelay = (Math.random() * 3) + "s";
+
+      heartsContainer.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 13000);
+    }
+
+    setInterval(createHeart, 450);
+
+    for (let i = 0; i < 12; i++) {
+      createHeart();
+    }
+  </script>
+
 </body>
-</html>
+  </html>
